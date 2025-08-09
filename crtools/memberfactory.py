@@ -42,7 +42,7 @@ class MemberFactory:
         if member.last_seen:
             last_seen = datetime.strptime(member.last_seen.split('.')[0], '%Y%m%dT%H%M%S')
         else:
-            last_seen = config['crtools']['timestamp']
+            last_seen = self.config['crtools']['timestamp']
 
         member.last_seen_formatted = last_seen.strftime('%c')
 

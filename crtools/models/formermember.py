@@ -14,21 +14,21 @@ class FormerMember():
         self.notes         = ''
 
         if player_tag in config['members']['warned']:
-        	demerit = config['members']['warned'][player_tag]
-        	if type(demerit) is Demerit:
-		        self.reason = 'Warned'
-        		self.notes = demerit.notes
+            demerit = config['members']['warned'][player_tag]
+            if isinstance(demerit, Demerit):
+                self.reason = 'Warned'
+                self.notes = getattr(demerit, 'notes', '')
 
         if player_tag in config['members']['kicked']:
-        	demerit = config['members']['kicked'][player_tag]
-        	if type(demerit) is Demerit:
-		        self.reason = 'Kicked'
-        		self.notes = demerit.notes
+            demerit = config['members']['kicked'][player_tag]
+            if isinstance(demerit, Demerit):
+                self.reason = 'Kicked'
+                self.notes = getattr(demerit, 'notes', '')
 
         if player_tag in config['members']['blacklist']:
-        	self.blacklist = True
+            self.blacklist = True
 
-        	demerit = config['members']['blacklist'][player_tag]
-        	if type(demerit) is Demerit:
-		        self.reason = 'Blacklisted'
-        		self.notes = demerit.notes
+            demerit = config['members']['blacklist'][player_tag]
+            if isinstance(demerit, Demerit):
+                self.reason = 'Blacklisted'
+                self.notes = getattr(demerit, 'notes', '')
